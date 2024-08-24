@@ -27,20 +27,19 @@ const jobSchema = mongoose.Schema(
       maxLength: [200, "Name is too large"],
     },
 
-    jobType: {
+    location: {
       type: String,
-      required: [true, "Please provide a jobType"],
-      trim: true,
+      required: [true, "Please provide a company location"],
     },
 
-    companyName: {
+    companyDetails: {
       type: String,
       required: [true, "Please provide a companyName"],
     },
 
-    location: {
+    joiningDate: {
       type: String,
-      required: [true, "Please provide a company location"],
+      // required: [true,"Please provide a joining date",]
     },
 
     salary: {
@@ -48,16 +47,27 @@ const jobSchema = mongoose.Schema(
       required: [true, "Please provide a salary"],
     },
 
+    experience: {
+      type: Number,
+      default: 0
+    },
+  
+    jobType: {
+      type: String,
+      required: [true, "Please provide a jobType"],
+      trim: true,
+    },
+
     jobDescription: String,
 
-    applicationEmailOrLink: {
-      type: String,
-      required: [true, "Please provide a application Email Or Link"],
-      validate: [
-        validator.isEmail || validator.isURL,
-        "Provide a valid Email or Link",
-      ],
-    },
+    // applicationEmailOrLink: {
+    //   type: String,
+    //   required: [true, "Please provide a application Email Or Link"],
+    //   validate: [
+    //     validator.isEmail || validator.isURL,
+    //     "Provide a valid Email or Link",
+    //   ],
+    // },
 
     appliedBy: [
       {

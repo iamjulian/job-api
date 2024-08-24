@@ -38,7 +38,7 @@ const {
       res.status(200).json({
         status: "success",
         message: "Successfully signed up",
-        user,
+        data: user,
       });
     } catch (error) {
       res.status(500).json({
@@ -92,40 +92,45 @@ const {
   const loginUser = async (req, res) => {
     try {
       const { email, password } = req.body;
+      console.log("email",email);
+      console.log("password",password);
   
       if (!email || !password) {
         return res.status(401).json({
           status: "fail",
-          error: "Please provide your credentials",
+          message: "Please provide your credentials",
         });
       }
   
       const user = await findUserByEmail(email);
+      console.log("userdata",user)
   
       if (!user) {
         return res.status(401).json({
           status: "fail",
-          error: "No user found. Please create an account",
+          message: "No user found. Please create an account",
         });
       }
   
       const isPasswordValid = user.comparePassword(password, user.password);
+      console.log("valid password", isPasswordValid);
   
       if (!isPasswordValid) {
         return res.status(403).json({
           status: "fail",
-          error: "Password is not correct",
+          message: "Password is not correct",
         });
       }
   
       if (user.status != "active") {
         return res.status(401).json({
           status: "fail",
-          error: "Your account is not active yet.",
+          message: "Your account is not active yet.",
         });
       }
   
       const token = generateToken(user);
+      console.log("user token",token)
   
       const { password: pass, ...others } = user.toObject();
   

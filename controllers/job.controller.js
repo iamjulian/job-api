@@ -47,7 +47,7 @@ const {
       res.status(200).json({
         status: "success",
         message: "get all jobs",
-        jobs,
+        data: jobs,
       });
     } catch (error) {
       res.status(500).json({
@@ -72,7 +72,7 @@ const {
   
       res.status(200).json({
         status: "success",
-        job,
+        data: job,
       });
     } catch (error) {
       res.status(400).json({
@@ -96,9 +96,9 @@ const {
       }
   
       res.status(201).json({
-        status: "ok",
+        status: "success",
         message: "successfully created job",
-        job,
+        data: job,
       });
     } catch (error) {
       res.status(500).json({
@@ -170,7 +170,7 @@ const {
   
       res.status(200).json({
         status: "success",
-        application,
+        data: application,
       });
     } catch (error) {
       res.status(500).json({

@@ -4,7 +4,7 @@ const colors = require("colors");
 const app = require("./app");
 
 // database connection
-const uri = `mongodb+srv://julian:julian@cluster0.poglh.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@job-portal.owls5.mongodb.net/`;
 
 mongoose.connect(uri).then(() => {
   console.log(`Successfully connected to database`.blue.bold);

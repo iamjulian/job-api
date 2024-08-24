@@ -8,7 +8,9 @@ const getAllJobsServices = async (filters, queries) => {
 };
 
 const createJobServices = async (data) => {
+  console.log("creator",data)
   const createrId = data.createdBy.id;
+  console.log("creatorId",createrId)
   const job = await Job.create(data);
   await User.findOneAndUpdate(
     { _id: createrId },

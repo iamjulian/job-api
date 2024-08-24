@@ -2,6 +2,8 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
 const signUpServices = async (data) => {
+  console.log("data",data);
+  console.log("password",data.password);
   //   const password = this.password;
 
   //   const hashedPassword = bcrypt.hashSync(password);
