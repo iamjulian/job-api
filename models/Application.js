@@ -41,7 +41,7 @@ const applicationSchema = mongoose.Schema(
 
     candidatePhoneNumber: {
       type: String,
-      required: [true, "Please provide a candidate Phone Number"],
+      // required: [true, "Please provide a candidate Phone Number"],
     },
 
     candidateAddress: String,
