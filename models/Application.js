@@ -7,12 +7,12 @@ const applicationSchema = mongoose.Schema(
     jobInfo: {
       companyName: {
         type: String,
-        required: [true, "Please provide a company Name"],
+        // required: [true, "Please provide a company Name"],
       },
 
       jobTitle: {
         type: String,
-        required: [true, "Please provide a job Title"],
+        // required: [true, "Please provide a job Title"],
       },
 
       id: {
@@ -46,7 +46,7 @@ const applicationSchema = mongoose.Schema(
 
     candidateAddress: String,
 
-    resume: String,
+    resume: {type:String, required:[true,"Please upload your resume"]}
   },
   {
     timestamps: true,

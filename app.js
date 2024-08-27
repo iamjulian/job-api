@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 
 //middleware
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 

@@ -10,29 +10,37 @@ const {
   const getAllJobs = async (req, res) => {
     try {
       let filters = { ...req.query };
+      
       const excludeFields = ["sort", "page", "limit"];
       excludeFields.forEach((field) => delete filters[field]);
   
       let filtersString = JSON.stringify(filters);
+      
       filtersString = filtersString.replace(
         /\b(gt|gte|lt|lte)\b/g,
         (match) => `$${match}`
       );
+      
   
       filters = JSON.parse(filtersString);
+      
   
       const queries = {};
   
       if (req.query.sort) {
         // price,qunatity   -> 'price quantity'
         const sortBy = req.query.sort.split(",").join(" ");
+        
         queries.sortBy = sortBy;
       }
   
       if (req.query.fields) {
         const fields = req.query.fields.split(",").join(" ");
+        
         queries.fields = fields;
       }
+
+      
   
       const jobs = await getAllJobsServices(filters, queries);
   
@@ -140,10 +148,16 @@ const {
       const { email } = req.user || {};
       const { id } = req.params;
       const resume = req.resumeName;
-  
+      const requestObject = JSON.parse(JSON.stringify(req.body));
+      
+
+
       const user = await findUserByEmail(email);
   
-      const application = await applicationServices(user, req.body, resume, id);
+      const application = await applicationServices(user, requestObject, resume, id);
+      console.log(application);
+      console.log(requestObject);
+      console.log(resume);
   
       if (!application) {
         return res.status(500).json({
@@ -152,14 +166,14 @@ const {
         });
       }
   
-      if (application === "Already Applied") {
+      if (application == "Already Applied") {
         return res.status(400).json({
           status: "fail",
           message: "Already Applied",
         });
       }
   
-      if (application === "deadline over") {
+      if (application == "deadline over") {
         if (expired) {
           return res.status(401).json({
             status: "fail",
