@@ -14,9 +14,11 @@ const signUpServices = async (data) => {
     return "confirmPassword Passwords don't match!";
   }
   const password = data.password;
+  console.log('passwords',password);
   const hashedPassword = bcrypt.hashSync(password);
   data.password = hashedPassword;
   const user = await User.create(data);
+  
   return user;
 };
 
