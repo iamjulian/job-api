@@ -25,7 +25,7 @@ const updateJobServices = async (id, data) => {
 };
 
 const getJobByIdServices = async (id) => {
-  return await Job.findById(id).populate("createdBy.id");
+  return await Job.findById(id).populate("createdBy.id").populate("appliedBy.id");
 };
 
 const applicationServices = async (user, data, resume, jobId) => {

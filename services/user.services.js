@@ -27,7 +27,7 @@ const verifyEmailServices = async (token) => {
 };
 
 const findUserByEmail = async (email) => {
-  return await User.findOne({ email });
+  return await User.findOne({ email }).populate("createdJobs");
 };
 
 module.exports = { signUpServices, verifyEmailServices, findUserByEmail };

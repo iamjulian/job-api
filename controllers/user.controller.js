@@ -16,13 +16,25 @@ const {
         req.originalUrl
       }/confirmation/${token}`;
   
-    //   const emailBody = `
-    //   <h3>Hello ${user?.name}</h3>
-    //   <p>Please Verify Your Account</p>
-    //   <a href=${emailButtonLink}>Click Here</a>
-    //   `;
+      const emailBody = `
+      <body>
+<h2>    Hey ${user.name},</h2>
+<p>
+
+Thank you for signing up for our service! Before we can get started, we need to verify your email address. Please click the button below to confirm your email address:
+
+<a href=${emailButtonLink}>Click Here</a>
+
+If you did not sign up for our service, please ignore this email.
+
+
+Thank you,
+ASAP
+</p>
+</body>
+      `;
       // http://localhost:7000/user/signup/confirmation/c33af0cdb91ae29cbc7f6568ca6690e12857ff03104acf8d5b272ba2b836df95
-      console.log(emailButtonLink);
+      console.log('email confirmation token'+emailButtonLink);
       // const email = await sendEmail(user?.email, "verification email", emailBody);
   
       await user.save({ validateBeforeSave: false });
@@ -76,10 +88,12 @@ const {
   
       user.save({ validateBeforeSave: false });
   
-      res.status(200).json({
-        status: "success",
-        message: "Successfully activated your account.",
-      });
+      res.status(200).send('<h1>')
+      // .json({
+      //   status: "success",
+      //   message: "Successfully activated your account.",
+      // })
+      ;
     } catch (error) {
       res.status(400).json({
         status: "fail",
@@ -159,7 +173,7 @@ const {
   
       res.status(200).json({
         status: "success",
-        user: others,
+        data: others,
       });
     } catch (error) {
       res.status(500).json({
