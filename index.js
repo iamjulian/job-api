@@ -9,7 +9,7 @@ const app = require("./app");
 //   console.log(`Successfully connected to database`.blue.bold);
 // });
 
-//Local database connection
+// Local database connection
 const localUri = `mongodb://localhost:27017/${process.env.TOKEN_KEY}`;
 mongoose.connect(localUri,{useNewUrlParser: true});
 const db = mongoose.connection;
